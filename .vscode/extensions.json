@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+      "editorconfig.editorconfig",
+      "streetsidesoftware.code-spell-checker",
+      "usernamehw.errorlens",
+      "nhoizey.gremlins",
+      "sonarsource.sonarlint-vscode"
+    ]
+}

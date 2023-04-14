@@ -1,0 +1,56 @@
+{
+  "name": "template-node-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "check-dependencies": "./node_modules/.bin/madge --circular ./src",
+    "lint": "eslint ./src ./test --max-warnings=0",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "(src|test)/**/*.{js,ts,json}": [
+      "prettier --write",
+      "npm run lint --max-warnings=0"
+    ]
+  },
+  "config": {
+    "commit-message-validator": {
+      "pattern": "^(feat|fix|docs|style|refactor|perf|test|chore|revert)(\\(.+\\))?: .{1,50}",
+      "errorMessage": "Your commit message does not match the conventional commit message format."
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinjatovix/template-node-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinjatovix/template-node-express/issues"
+  },
+  "homepage": "https://github.com/vinjatovix/template-node-express#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
+    "@babel/preset-env": "^7.21.4",
+    "@types/node": "^18.15.11",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.5.0",
+    "commit-message-validator": "^1.0.2",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-unobtrusive": "^1.2.5",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.1",
+    "madge": "^6.0.0",
+    "prettier": "^2.8.7"
+  }
+}
