@@ -8,7 +8,8 @@
     "lint": "eslint ./src ./test --max-warnings=0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-commit": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "node main.js"
   },
   "lint-staged": {
     "(src|test)/**/*.{js,ts,json}": [
@@ -52,5 +53,10 @@
     "lint-staged": "^13.2.1",
     "madge": "^6.0.0",
     "prettier": "^2.8.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   }
 }
