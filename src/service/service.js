@@ -13,10 +13,26 @@ const defaultResponse = (_req, res) => {
   res.status(404).send({ message: "Not Found" });
 };
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://template-node-express-production.up.railway.app",
+  "https://template-node-express-development.up.railway.app"
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+
 app
   .set("x-powered-by", false)
   .set("trust proxy", TRUSTED_PROXIES)
-  .use(cors())
+  .use(cors(corsOptions))
   .use(requestMonitor)
   .use(apiLimiter)
   .use(securityPolicy)
