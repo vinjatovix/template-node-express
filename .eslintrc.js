@@ -8,7 +8,8 @@ module.exports = {
   env: {
     node: true,
     es6: true,
-    jest: true
+    jest: true,
+    "jest/globals": true
   },
 
   extends: ["eslint:recommended", "unobtrusive/import", "prettier", "plugin:json/recommended"],
@@ -24,7 +25,8 @@ module.exports = {
     "import/no-cycle": "error",
     "jest/prefer-spy-on": "off",
     "jest/expect-expect": "off",
-    "jest/prefer-strict-equal": "off"
+    "jest/prefer-strict-equal": "off",
+    "jest/valid-describe-callback": "error"
   },
   overrides: [
     {
@@ -36,13 +38,10 @@ module.exports = {
         "jest/no-disabled-tests": "warn",
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
-        "jest/no-jest-import": "error",
         "jest/no-test-return-statement": "error",
-        "jest/prefer-to-be-null": "warn",
-        "jest/prefer-to-be-undefined": "warn",
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error",
-        "jest/valid-describe": "error"
+        "jest/valid-describe-callback": "error"
       }
     }
   ]
