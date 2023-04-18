@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const { connectDB } = require("./connectDB");
 const { dbErrors } = require("./dbErrors");
 
-const throwError = (error, info) => {
+const throwDbError = (error, info) => {
   if (!mongoose.connection.readyState) {
     connectDB();
+  }
+  if (error.id) {
+    throw error;
   }
 
   const code = error.code || dbErrors.BAD_REQUEST;
@@ -15,19 +18,23 @@ const throwError = (error, info) => {
     driver: error.driver,
     name: error.name
   };
+  const newError = new Error();
+  newError.id = "MONGO_ERROR";
+  newError.replace = { message };
+  newError.info = info;
+  newError.mongoInfo = mongoInfo;
+
   if (code === dbErrors.UNAUTHORIZED) {
-    throw { id: "MONGO_UNAUTHORIZED", replace: { message }, info, mongoInfo };
+    newError.id = "MONGO_UNAUTHORIZED";
   }
   if (code === dbErrors.CONFLICT) {
-    throw { id: "MONGO_WRITING_ERROR", replace: { message }, info, mongoInfo };
+    newError.id = "MONGO_WRITING_ERROR";
   }
   if (code === dbErrors.BAD_REQUEST) {
-    throw { id: "MONGO_VALIDATION_ERROR", replace: { message }, info, mongoInfo };
+    newError.id = "MONGO_VALIDATION_ERROR";
   }
-  if (error.id) {
-    throw error;
-  }
-  throw { id: "MONGO_ERROR", replace: { message }, info, mongoInfo };
+
+  throw newError;
 };
 
-module.exports = { throwError };
+module.exports = { throwDbError };

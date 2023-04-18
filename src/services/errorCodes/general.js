@@ -5,7 +5,7 @@ const {
 } = require("../../service/httpStatusCodes");
 
 module.exports = {
-  valid: code => /^E3[1-9]/.test(code),
+  valid: code => /^E10[1-9]/.test(code),
   module: "general",
   errors: rep => [
     {
@@ -23,7 +23,7 @@ module.exports = {
       status: HTTP_BAD_REQUEST
     },
     {
-      code: "E102",
+      code: "E103",
       id: "DATA_INVALID",
       message: "The request has a wrong property.",
       errors: rep.errors,

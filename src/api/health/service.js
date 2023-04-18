@@ -1,3 +1,5 @@
+const Repository = require("./repository");
+
 const getStatus = async (startTime, ip, { responseDelay = 0.025 }) =>
   new Promise(resolve => {
     setTimeout(() => {
@@ -10,6 +12,11 @@ const getStatus = async (startTime, ip, { responseDelay = 0.025 }) =>
     }, responseDelay * 1000);
   });
 
+const getTestUsers = async (filter = {}, _options) => {
+  return Repository.findByQuery(filter, { json: true });
+};
+
 module.exports = {
-  getStatus
+  getStatus,
+  getTestUsers
 };
