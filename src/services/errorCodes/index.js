@@ -1,6 +1,7 @@
 const general = require("./general");
+const mongoose = require("./mongoose");
 
-const configModules = [general];
+const configModules = [general, mongoose];
 const errorValidation = {};
 
 const getErrors = (moduleErrors, info) => {
