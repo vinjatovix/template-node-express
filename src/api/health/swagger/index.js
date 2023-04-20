@@ -1,6 +1,6 @@
 const { HTTP_OK } = require("../../../service/httpStatusCodes");
 const { getParameters, RESPONSES, getResponse } = require("../../../swagger/shared");
-const { statusSchema } = require("./schemas");
+const { statusSchema, testUserSchema } = require("./schemas");
 
 const healthTag = {
   name: "Health",
@@ -13,9 +13,21 @@ const healthPaths = {
       tags: [healthTag.name],
       summary: "Get status of the server.",
       description: "Returns the current status of the server.",
-      parameters: [...getParameters(["delay"])],
+      parameters: getParameters({ delay: true }),
       responses: {
         [`${HTTP_OK}`]: getResponse("ok", statusSchema),
+        ...RESPONSES
+      }
+    }
+  },
+  ["/v1/health/users"]: {
+    get: {
+      tags: [healthTag.name],
+      summary: "Get test users.",
+      description: "Returns the test users.",
+      parameters: getParameters({ filter: true }),
+      responses: {
+        [`${HTTP_OK}`]: getResponse("ok", [testUserSchema]),
         ...RESPONSES
       }
     }

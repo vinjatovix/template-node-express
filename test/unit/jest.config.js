@@ -2,7 +2,7 @@ module.exports = {
   testEnvironment: "node",
   testRegex: "/test/.*[-.]test\\.js?$",
   modulePathIgnorePatterns: ["<rootDir>/.yarn_cache"],
-  setupFiles: ["<rootDir>/test/unit/setup.js"],
+  setupFiles: ["<rootDir>/setup.js"],
   snapshotSerializers: [],
   collectCoverage: true,
   coverageDirectory: "coverage",

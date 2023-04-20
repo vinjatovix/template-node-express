@@ -1,7 +1,8 @@
 const {
   HTTP_INTERNAL_SERVER_ERROR,
   HTTP_GATEWAY_TIMEOUT,
-  HTTP_SERVICE_UNAVAILABLE
+  HTTP_SERVICE_UNAVAILABLE,
+  HTTP_UNAUTHORIZED
 } = require("../../service/httpStatusCodes");
 
 const getResponse = (title, swaggerSchema) => {
@@ -25,6 +26,7 @@ const getResponse = (title, swaggerSchema) => {
 };
 
 const RESPONSES = {
+  [`${HTTP_UNAUTHORIZED}`]: getResponse("Unauthorized."),
   [`${HTTP_INTERNAL_SERVER_ERROR}`]: getResponse("Internal server error."),
   [`${HTTP_SERVICE_UNAVAILABLE}`]: getResponse("Service unavailable."),
   [`${HTTP_GATEWAY_TIMEOUT}`]: getResponse("Response timeout")

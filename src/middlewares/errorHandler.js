@@ -1,6 +1,6 @@
 const { errorCodes } = require("../services/errorCodes");
 const logger = require("../service/logger");
-const { HTTP_GATEWAY_TIMEOUT } = require("../service/httpStatusCodes");
+const { HTTP_GATEWAY_TIMEOUT, HTTP_UNAUTHORIZED } = require("../service/httpStatusCodes");
 
 const errorHandler = (err, _req, res, _next) => {
   const { status, stack = [], ...data } = err.id ? _getNamedError(err) : _getUnnamedError(err);
@@ -27,6 +27,8 @@ const _getStatus = (code, status) => {
   switch (code) {
     case "ETIMEDOUT":
       return HTTP_GATEWAY_TIMEOUT;
+    case 8000:
+      return HTTP_UNAUTHORIZED;
     default:
       return status || 500;
   }
